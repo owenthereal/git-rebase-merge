@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+
+git.current_branch() {
+  br=`git branch | grep "*"`
+  echo ${br/* /}
+}
+
+git.checkout() {
+  git checkout $1
+}
+
+git.fetch() {
+  git fetch origin
+}
+
+git.pull() {
+  git pull origin $1
+}
+
+git.rebase() {
+  git rebase -i origin/$1
+}
+
+git.force_push() {
+  git push -f origin $1
+}
+
+git.push() {
+  git push origin $1
+}
+
+git.merge() {
+  git merge --edit $1
+}
+
+git.delete_branch() {
+  git branch -D $1 &&
+  git push origin :$1
+}
+
+merge() {
+  git.fetch &&
+
+  git.checkout $2 &&
+  git.pull $2 &&
+  git.rebase $1 &&
+  git.merge $1 &&
+  git.force_push $2 &&
+
+  git.checkout $1 &&
+  git.pull $1 &&
+  git.merge $2 &&
+  git.push $1 &&
+
+  git.delete_branch $2
+}
+
+main() {
+  if [ $# = 0 ]
+  then
+    echo "Usage: git-rebase-merge <topic-branches>"
+    exit 0
+  fi
+
+  for b in $*
+  do
+    echo "Merging $b to $(git.current_branch)..."
+
+    merge $(git.current_branch) $b
+  done
+}
+
+main $*
