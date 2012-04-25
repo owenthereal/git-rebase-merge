@@ -3,6 +3,12 @@ git-rebase-merge
 
 A bash script to rebase and merge a Git topic branch to current branch.
 
---- sh
-$ git-rebase-merge topic_branch1 topic_branch2
----
+### Usage
+
+```sh
+$ git-rebase-merge topic-branch1 topic-branch2 ...
+```
+
+### License
+
+See LICENSE
