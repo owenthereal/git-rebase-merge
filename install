@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+
+echo "*** Installing git-rebase-merge..."
+
+BIN_FOLDER="/usr/local/bin"
+BIN_FILE="$BIN_FOLDER/git-rebase-merge"
+SOURCE_FILE="https://raw.github.com/jingweno/git-rebase-merge/master/git-rebase-merge"
+
+mkdir -p $BIN_FOLDER
+rm -rf $BIN_FILE
+curl -s $SOURCE_FILE -o $BIN_FILE
+chmod +x $BIN_FILE
+
+echo "*** Installed"
+echo
+echo "Visit https://github.com/jingweno/git-rebase-merge for more information"
+echo
+echo "To uninstall git-rebase-merge, \`curl https://raw.github.com/jingweno/git-rebase-merge/master/uninstall | sh\`"

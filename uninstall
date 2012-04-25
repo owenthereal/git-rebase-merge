@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+echo "*** Uninstalling git-rebase-merge..." 
+
+rm -rf /usr/local/bin/git-rebase-merge
+
+echo "*** Uninstalled"
