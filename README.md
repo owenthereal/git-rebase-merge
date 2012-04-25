@@ -6,6 +6,8 @@ A bash script to rebase and merge a Git topic branch to current branch.
 ### Usage
 
 ```sh
+# Assuming current branch is master,
+# it reabses a list of topic branches on top of master and then merge into master
 $ git-rebase-merge topic-branch1 topic-branch2 ...
 ```
 
